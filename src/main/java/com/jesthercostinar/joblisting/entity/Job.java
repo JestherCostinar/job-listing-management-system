@@ -25,7 +25,7 @@ public class Job {
 
     @Column(nullable = false)
     private String name;
-    
+
     private String description;
     private int noOfOpenPosition;
     private BigDecimal salary;
