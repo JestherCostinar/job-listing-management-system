@@ -25,4 +25,11 @@ public class JobServiceImpl implements JobService {
                 .map(job -> modelMapper.map(job, JobDto.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public JobDto findJobById(Long id) {
+        Job job = jobRepository.findById(id).get();
+
+        return modelMapper.map(job, JobDto.class);
+    }
 }

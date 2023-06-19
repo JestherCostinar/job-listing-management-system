@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common/fragments :: head}">
+</head>
+
+<body>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div th:replace="~{common/fragments :: header}"></div>
+    </div>
+    <div th:replace="~{common/fragments :: navbar}"></div>
+</header>
+
+<section class="py-5 container">
+
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">List of Jobs</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Jobs</li>
+        </ol>
+    </nav>
+
+    <div class="card mb-12" >
+        <div class="row g-0">
+            <div class="col-md-4">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${job.name}"></h5>
+                    <p class="card-text" th:if="${job.companyNameHidden}">Company:
+                        <small class="text-muted">Company name is hidden</small>
+                    </p>
+                    <p class="card-text" th:unless="${job.companyNameHidden}">Company:
+                        <small class="text-muted" th:text="${job.companyName}"></small>
+                    </p>
+                    <p class="card-text">Salary: <small class="text-muted" th:text="${job.salary}"></small></p>
+                    <p class="card-text">Location: <small class="text-muted" th:text="${job.location}"></small></p>
+                    <p class="card-text">No. of Open Position: <small class="text-muted" th:text="${job.noOfOpenPosition}"></small></p>
+                    <p class="card-text">Required Years of Experience: <small class="text-muted" th:text="${job.yearsOfExperience}"></small></p>
+                    <p class="card-text">Is still hiring: <small class="text-muted" th:text="${job.active}"></small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

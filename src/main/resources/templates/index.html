@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <div th:replace="~{common/fragments :: head}"></div>
+<head th:replace="~{common/fragments :: head}">
 </head>
 <body>
 <header>
@@ -39,8 +38,8 @@
               <p class="card-text" th:text="${#strings.length(job.description) > 120 ? #strings.substring(job.description, 0, 120) + '...' : job.description}"></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  <a th:href="@{job/{id}(id=${job.id})}" class="btn btn-sm btn-outline-secondary">View</a>
+                  <a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
                 </div>
                 <small class="text-muted" th:text="'PHP ' + ${job.salary}"></small>
               </div>
@@ -200,10 +199,7 @@
 
 </main>
 
-<footer th:replace="~{common/fragments :: footer}">
-
-</footer>
-
+<footer th:replace="~{common/fragments :: footer}"></footer>
 
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 

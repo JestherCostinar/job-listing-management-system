@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -15,11 +16,20 @@ public class JobController {
 
     private JobService jobService;
 
-    @GetMapping
+    @GetMapping("/")
     public String jobs(Model model) {
         List<JobDto> jobs = jobService.finAllJobs();
         model.addAttribute("jobs", jobs);
 
         return "index";
+    }
+
+    @GetMapping("job/{id}")
+    public String findJobById(@PathVariable("id") Long id,
+                              Model model) {
+        JobDto job = jobService.findJobById(id);
+        model.addAttribute("job", job);
+
+        return "job";
     }
 }
