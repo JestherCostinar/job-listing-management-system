@@ -13,6 +13,12 @@
 
 <section class="py-5 container">
 
+  <div class="col-8 mx-auto" th:if="${param.success}">
+    <div class="alert alert-success" role="alert" >
+      You have successfully registered!
+    </div>
+  </div>
+
   <div class="card mb-8 col-8 mx-auto">
     <div class="card-header">
       <h2 class="text-center"> User Registration </h2>
@@ -22,21 +28,25 @@
         <div class="col-6">
           <label for="firstName" class="form-label">First Name</label>
           <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter First Name" th:field="*{firstName}">
+          <p th:if="${#fields.hasErrors('firstName')}" class="text-danger" th:errors="*{firstName}"></p>
         </div>
 
         <div class="col-6">
           <label for="lastName" class="form-label">Last Name</label>
           <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name" th:field="*{lastName}">
+          <p th:if="${#fields.hasErrors('lastName')}" class="text-danger" th:errors="*{lastName}"></p>
         </div>
 
         <div class="col-12">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" th:field="*{email}">
+          <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
         </div>
 
         <div class="col-12">
           <label for="password" class="form-label">Password</label>
-          <input type="email" class="form-control" id="password" name="password" placeholder="Enter Password" th:field="*{password}">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" th:field="*{password}">
+          <p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>
         </div>
 
         <div class="col-12">
