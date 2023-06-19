@@ -60,4 +60,12 @@ public class JobController {
 
         return "redirect:/";
     }
+
+    @GetMapping("job/{id}/edit")
+    public String viewEditJob(@PathVariable("id") Long id, Model model) {
+        JobDto job = jobService.findJobById(id);
+        model.addAttribute("job", job);
+
+        return "edit_job";
+    }
 }
