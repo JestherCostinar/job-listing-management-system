@@ -25,10 +25,11 @@
             <h2 class="text-center"> Job Information</h2>
         </div>
         <div class="card-body">
-            <form class="row g-3" method="post" role="form" th:action="@{/job}" th:object="${job}">
+            <form class="row g-3" method="post" role="form" th:action="@{/job/save}" th:object="${job}">
                 <div class="col-12">
                     <label for="name" class="form-label">Job Title</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter job title" th:field="*{name}">
+                    <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
                 </div>
                 <div class="col-8">
                     <label for="companyName" class="form-label">Company Name</label>
@@ -37,8 +38,8 @@
                 <div class="col-4">
                     <label for="companyNameHidden" class="form-label">Hide company name</label>
                     <select id="companyNameHidden" name="companyNameHidden" class="form-select" th:field="*{companyNameHidden}">
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
+                        <option th:value="true">Yes</option>
+                        <option th:value="false">No</option>
                     </select>
                 </div>
                 <div class="col-12">
@@ -51,17 +52,17 @@
                 </div>
                 <div class="col-4">
                     <label for="noOfOpenPosition" class="form-label">No. of open position</label>
-                    <input type="number" step="1" class="form-control" id="noOfOpenPosition" name="noOfOpenPosition" placeholder="Enter open position" th:field="*{noOfOpenPosition}">
+                    <input type="number" class="form-control" id="noOfOpenPosition" name="noOfOpenPosition" placeholder="Enter open position" th:field="*{noOfOpenPosition}">
                 </div>
                 <div class="col-4">
-                    <label for="yearsOfExperience" class="form-label">Minimum year reaquirement</label>
-                    <input type="number" step="1" class="form-control" id="yearsOfExperience" name="yearsOfExperience" placeholder="Enter minimun year requirement" th:field="*{yearsOfExperience}">
+                    <label for="yearsOfExperience" class="form-label">Minimum year requirement</label>
+                    <input type="number" class="form-control" id="yearsOfExperience" name="yearsOfExperience" placeholder="Enter minimum year requirement" th:field="*{yearsOfExperience}">
                 </div>
                 <div class="col-4">
                     <label for="active" class="form-label">Is still hiring?</label>
                     <select id="active" name="active" class="form-select" th:field="*{active}">
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
+                        <option th:value="true">Yes</option>
+                        <option th:value="false">No</option>
                     </select>
                 </div>
                 <div class="col-12">

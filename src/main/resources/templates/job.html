@@ -39,6 +39,8 @@
                     <p class="card-text">No. of Open Position: <small class="text-muted" th:text="${job.noOfOpenPosition}"></small></p>
                     <p class="card-text">Required Years of Experience: <small class="text-muted" th:text="${job.yearsOfExperience}"></small></p>
                     <p class="card-text">Is still hiring: <small class="text-muted" th:text="${job.active}"></small></p>
+                    <p class="card-text">Description: <small class="text-muted" th:utext="${job.description}"></small></p>
+
                 </div>
             </div>
         </div>

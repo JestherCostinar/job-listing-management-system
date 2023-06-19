@@ -32,4 +32,10 @@ public class JobServiceImpl implements JobService {
 
         return modelMapper.map(job, JobDto.class);
     }
+
+    @Override
+    public void createJob(JobDto jobDto) {
+        Job job = modelMapper.map(jobDto, Job.class);
+        jobRepository.save(job);
+    }
 }
