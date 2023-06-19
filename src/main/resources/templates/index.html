@@ -27,6 +27,11 @@
 
   <div class="album py-5 bg-light">
     <div class="container">
+      <div class="row justify-content-end mb-3">
+        <div class="col-auto">
+          <a th:href="@{/job/create}" class="btn btn-primary">Post a job</a>
+        </div>
+      </div>
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" th:each="job : ${jobs}">

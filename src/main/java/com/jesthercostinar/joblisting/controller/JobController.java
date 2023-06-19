@@ -32,4 +32,12 @@ public class JobController {
 
         return "job";
     }
+
+    @GetMapping("job/create")
+    public String createJob(Model model) {
+        JobDto job = new JobDto();
+        model.addAttribute("job", job);
+
+        return "create_job";
+    }
 }
