@@ -20,6 +20,6 @@ public class JobController {
         List<JobDto> jobs = jobService.finAllJobs();
         model.addAttribute("jobs", jobs);
 
-        return "jobs";
+        return "index";
     }
 }
