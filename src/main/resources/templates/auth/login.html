@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common/fragments :: head}">
+</head>
+
+<body>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div th:replace="~{common/fragments :: header}"></div>
+    </div>
+    <div th:replace="~{common/fragments :: navbar}"></div>
+</header>
+
+<section class="py-5 container">
+
+    <div class="col-6 mx-auto" th:if="${param.logout}">
+        <div class="alert alert-success" role="alert" >
+            You have successfully logout!
+        </div>
+    </div>
+
+    <div class="col-6 mx-auto" th:if="${param.error}">
+        <div class="alert alert-danger" role="alert" >
+            Invalid Email or Password.
+        </div>
+    </div>
+
+    <div class="card mb-8 col-6 mx-auto">
+        <div class="card-header">
+            <h2 class="text-center"> Login </h2>
+        </div>
+        <div class="card-body">
+            <form class="row g-3" method="post" role="form" th:action="@{/login}">
+                <div class="col-12">
+                    <label for="username" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Email Address">
+                </div>
+
+                <div class="col-12">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" >
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

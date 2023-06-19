@@ -18,6 +18,11 @@ public class AuthController {
 
     private UserService userService;
 
+    @GetMapping("/login")
+    public String login() {
+        return "auth/login";
+    }
+
     @GetMapping("/register")
     public String showRegistrationPage(Model model) {
         UserDto user = new UserDto();
