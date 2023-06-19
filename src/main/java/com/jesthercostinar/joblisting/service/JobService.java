@@ -9,4 +9,5 @@ public interface JobService {
     JobDto findJobById(Long id);
     void createJob(JobDto jobDto);
     void updateJob(JobDto jobDto);
+    void deleteJob(Long id);
 }

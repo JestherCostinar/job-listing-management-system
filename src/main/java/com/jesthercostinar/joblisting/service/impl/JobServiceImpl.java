@@ -40,4 +40,9 @@ public class JobServiceImpl implements JobService {
     public void updateJob(JobDto jobDto) {
         jobRepository.save(modelMapper.map(jobDto, Job.class));
     }
+
+    @Override
+    public void deleteJob(Long id) {
+        jobRepository.deleteById(id);
+    }
 }
