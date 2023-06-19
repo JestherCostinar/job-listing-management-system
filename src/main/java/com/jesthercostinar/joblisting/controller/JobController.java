@@ -68,4 +68,21 @@ public class JobController {
 
         return "edit_job";
     }
+
+    @PostMapping("job/{id}")
+    public String updateJob(@PathVariable Long id,
+                            @Valid @ModelAttribute("job") JobDto job,
+                            BindingResult result,
+                            Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("job", job);
+
+            return "edit_job";
+        }
+
+        job.setId(id);
+        jobService.updateJob(job);
+
+        return "redirect:/";
+    }
 }

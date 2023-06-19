@@ -25,7 +25,7 @@
       <h2 class="text-center"> Job Information</h2>
     </div>
     <div class="card-body">
-      <form class="row g-3" method="post" role="form" th:action="@{/job/save}" th:object="${job}">
+      <form class="row g-3" method="post" role="form" th:action="@{/job/{id}(id=${job.id})}" th:object="${job}">
         <div class="col-12">
           <label for="name" class="form-label">Job Title</label>
           <input type="text" class="form-control" id="name" name="name" placeholder="Enter job title" th:field="*{name}">

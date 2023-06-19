@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class JobDto {
     private Long id;
+
+    @NotEmpty(message = "Job title is required")
     private String name;
     private String description;
     private int noOfOpenPosition;

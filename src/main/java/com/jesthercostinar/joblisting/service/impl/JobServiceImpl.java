@@ -28,14 +28,16 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public JobDto findJobById(Long id) {
-        Job job = jobRepository.findById(id).get();
-
-        return modelMapper.map(job, JobDto.class);
+        return modelMapper.map(jobRepository.findById(id).get(), JobDto.class);
     }
 
     @Override
     public void createJob(JobDto jobDto) {
-        Job job = modelMapper.map(jobDto, Job.class);
-        jobRepository.save(job);
+        jobRepository.save(modelMapper.map(jobDto, Job.class));
+    }
+
+    @Override
+    public void updateJob(JobDto jobDto) {
+        jobRepository.save(modelMapper.map(jobDto, Job.class));
     }
 }
