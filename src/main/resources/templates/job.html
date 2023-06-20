@@ -42,7 +42,7 @@
                     <p class="card-text">Description: <small class="text-muted" th:utext="${job.description}"></small></p>
 
                     <a th:href="@{{id}/edit(id=${job.id})}" class="btn btn-sm btn-primary">Edit</a>
-                    <a th:href="@{/{id}/delete(id=${job.id})}" class="btn btn-sm btn-danger">Delete</a>
+                    <a th:href="@{/job/{id}/delete(id=${job.id})}" class="btn btn-sm btn-danger">Delete</a>
 
                 </div>
             </div>

@@ -5,6 +5,7 @@ import com.jesthercostinar.joblisting.entity.Job;
 import com.jesthercostinar.joblisting.service.JobService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,7 @@ public class JobController {
         return "index";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("job/{id}")
     public String findJobById(@PathVariable("id") Long id,
                               Model model) {
@@ -35,6 +37,7 @@ public class JobController {
         return "job";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("job/create")
     public String pageForCreateJob(Model model) {
         JobDto job = new JobDto();
@@ -43,6 +46,7 @@ public class JobController {
         return "create_job";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("job/save")
     public String saveJob(@Valid @ModelAttribute("job") JobDto job,
                           Model model,
@@ -58,6 +62,7 @@ public class JobController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("job/{id}/edit")
     public String viewEditJob(@PathVariable("id") Long id, Model model) {
         JobDto job = jobService.findJobById(id);
@@ -66,6 +71,7 @@ public class JobController {
         return "edit_job";
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("job/{id}")
     public String updateJob(@PathVariable Long id,
                             @Valid @ModelAttribute("job") JobDto job,
@@ -83,7 +89,8 @@ public class JobController {
         return "redirect:/";
     }
 
-    @GetMapping("{id}/delete")
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("job/{id}/delete")
     public String deleteJob(@PathVariable Long id) {
         jobService.deleteJob(id);
 

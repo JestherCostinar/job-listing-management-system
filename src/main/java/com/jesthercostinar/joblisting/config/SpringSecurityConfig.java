@@ -2,6 +2,7 @@ package com.jesthercostinar.joblisting.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,22 +23,42 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/register/**").permitAll()
-                .requestMatchers("/").permitAll()
-                .requestMatchers("/job/**").hasAnyRole("ADMIN", "USER")
-                .and()
-                .formLogin(
-                        form -> form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/")
-                                .permitAll()
-                ).logout(
-                        logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .permitAll()
-                );
+                .authorizeHttpRequests((authorize) -> {
+                    authorize.requestMatchers("/").permitAll();
+                    authorize.requestMatchers("/register/**").permitAll();
+                    authorize.anyRequest().authenticated();
+                    try {
+                        authorize.and()
+                                .formLogin(
+                                        form -> form
+                                                .loginPage("/login")
+                                                .loginProcessingUrl("/login")
+                                                .defaultSuccessUrl("/")
+                                                .permitAll()
+                                ).logout(
+                                        logout -> logout
+                                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                                .permitAll());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }).httpBasic(Customizer.withDefaults());
+//                .requestMatchers("/register/**").permitAll()
+//                .requestMatchers("/").permitAll()
+////                .requestMatchers("/job/**").hasAnyRole("ADMIN", "USER")
+//                .and()
+//                .formLogin(
+//                        form -> form
+//                                .loginPage("/login")
+//                                .loginProcessingUrl("/login")
+//                                .defaultSuccessUrl("/")
+//                                .permitAll()
+//                ).logout(
+//                        logout -> logout
+//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                                .permitAll()
+//                );
 
         return http.build();
     }
