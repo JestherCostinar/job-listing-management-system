@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,7 +73,7 @@
                 </p>
                 <p class="mb-1">&copy; 2023 JESTHER COSTINAR. All Right Reserved</p>
                 <p class="mb-0">Discover Your Dream Job with JobPhilia: Unleashing Opportunities, Empowering Careers</p>
-                <div th:if="${#authentication.isAuthenticated()}">
+                <div sec:authorize="isAuthenticated()">
                         <a class="navbar-brand" th:href="@{/logout}">Logout</a>
                 </div>
         </div>

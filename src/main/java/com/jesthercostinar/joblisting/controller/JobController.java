@@ -27,7 +27,6 @@ public class JobController {
         return "index";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("job/{id}")
     public String findJobById(@PathVariable("id") Long id,
                               Model model) {

@@ -26,6 +26,7 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers("/").permitAll();
                     authorize.requestMatchers("/register/**").permitAll();
+                    authorize.requestMatchers("job/{id}").permitAll();
                     authorize.anyRequest().authenticated();
                     try {
                         authorize.and()
@@ -44,21 +45,6 @@ public class SpringSecurityConfig {
                     }
 
                 }).httpBasic(Customizer.withDefaults());
-//                .requestMatchers("/register/**").permitAll()
-//                .requestMatchers("/").permitAll()
-////                .requestMatchers("/job/**").hasAnyRole("ADMIN", "USER")
-//                .and()
-//                .formLogin(
-//                        form -> form
-//                                .loginPage("/login")
-//                                .loginProcessingUrl("/login")
-//                                .defaultSuccessUrl("/")
-//                                .permitAll()
-//                ).logout(
-//                        logout -> logout
-//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                                .permitAll()
-//                );
 
         return http.build();
     }

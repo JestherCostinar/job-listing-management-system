@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{common/fragments :: head}">
 </head>
 <body>
@@ -19,7 +19,10 @@
         <p class="lead text-muted">Discover Your Dream Job with JobPhilia: Unleashing Opportunities, Empowering Careers</p>
         <p>
           <a href="#job-section" class="btn btn-primary my-2">Find a Job</a>
-          <a th:href="@{/login}" class="btn btn-secondary my-2">Login</a>
+        <span sec:authorize="!isAuthenticated()">
+          <a th:href="@{/login}" class="btn btn-secondary my-2" >Login</a>
+        </span>
+<!--          <a th:href="@{/login}" class="btn btn-secondary my-2">Login</a>-->
         </p>
       </div>
     </div>
@@ -27,7 +30,7 @@
 
   <div class="album py-5 bg-light" id="job-section">
     <div class="container">
-      <div class="row justify-content-end mb-3">
+      <div class="row justify-content-end mb-3" sec:authorize="hasRole('ADMIN')">
         <div class="col-auto">
           <a th:href="@{/job/create}" class="btn btn-primary">Post a job</a>
         </div>
@@ -44,7 +47,9 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a th:href="@{job/{id}(id=${job.id})}" class="btn btn-sm btn-outline-secondary">View</a>
-                  <a th:href="@{job/{id}/edit(id=${job.id})}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                  <span sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{job/{id}/edit(id=${job.id})}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                  </span>
                 </div>
                 <small class="text-muted" th:text="'PHP ' + ${job.salary}"></small>
               </div>
