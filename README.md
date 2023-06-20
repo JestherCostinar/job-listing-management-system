@@ -1,4 +1,4 @@
-<h1 style="color: #FF0000;" align="center">TODO MANAGEMENT SYSTEM</h1>
+<h1 style="color: #FF0000;" align="center">JOB LISTING MANAGEMENT SYSTEM</h1>
 
 ![screencapture-localhost-8080-2023-06-20-17_34_01](https://github.com/JestherCostinar/job-listing-management-system/assets/56688615/607996c0-c248-48fc-a49d-a5376fbcccdd)
 
